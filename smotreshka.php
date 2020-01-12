@@ -13,6 +13,7 @@
  $sm_password=$argv[2];
  $playlist_file=$argv[3];
  $mode = ($argc>=5) ? $argv[4] : "Auto";
+ $sm_email_urlencoded=urlencode($sm_email);
 
  function StructArraySearch(array &$a,$field,$value,$default_idx=FALSE)
  {
@@ -73,7 +74,7 @@
         CURLOPT_SSL_VERIFYPEER=>false
   ));
 
-  curl_setopt ($curl, CURLOPT_POSTFIELDS, "email=$sm_email&password=$sm_password");
+  curl_setopt ($curl, CURLOPT_POSTFIELDS, "email=$sm_email_urlencoded&password=$sm_password");
   curl_setopt ($curl, CURLOPT_URL, "https://fe.smotreshka.tv/login");
   curl_exec($curl);
   CheckHttpCode($curl);
